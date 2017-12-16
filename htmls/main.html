@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>starting</title>
+    <!-- <meta charset="utf-8">-->
+    <meta name="viewpoint" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="mystyle2.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  </head>
+  <body>
+    <!--dynamically channging coontent-->
+<script type="text/javascript">
+    var obj;
+      var xhttp=new XMLHttpRequest();
+      xhttp.onreadystatechange=function()
+      {
+        if(this.readyState==4 && this.status==200)
+        {
+          obj=JSON.parse(this.responseText);
+           //console.log(obj);
+           for(i=0;i<3;i++)
+              {
+                document.getElementById("title"+i).innerHTML=obj[i].title;
+                document.getElementById("con"+i).innerHTML=obj[i].content;
+                document.getElementById("img"+i).src=obj[i].imageUrl;
+                document.getElementById("id"+i).innerHTML=obj[i].id;
+              }
+        }
+      };
+     
+      //obj=JSON.parse(localStorage.getItem(this.responseText));
+      xhttp.open("GET","http://koushikmln.com:7500/blogs",true);
+      xhttp.setRequestHeader("Content-type","application/JSON");
+      xhttp.send();
+  </script>
+  <script type="text/javascript">
+      function blog(id)
+      {
+        localStorage.setItem('id',id);
+      }
+  </script>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"><b>AuthorPlaces</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><b>Home </b><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><b>Collections</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><b>Authors</b></a>
+      </li>
+    </ul>
+
+
+      <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a href="register.html"><button class="btn btn-success" type="button">Register</button></a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="signin.html"><button class="btn btn-success" type="button">Sign In</button></a>  
+                      <!-- ng-click="login()" ng-hide="currentUserSignedIn"
+                      <span style="display: none" ng-show="currentUserSignedIn">currentUser.name</span>      -->
+                    </li>
+                </ul>
+  </div>
+</nav>
+  <!-- <script type="text/javascript">
+   
+    function login(){
+    var onSuccessCallback = function(data) {
+        $rootScope.currentUserSignedIn = true;
+         var stored = localStorage.getItem('signedin');  
+        $rootScope.currentUser.name = stored.name;
+    };
+    // Login function to the server comes here
+}
+  </script>   -->
+    
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="mercure.jpg" alt="First slide" height="500px" width="550px">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="image.png" alt="Second slide" height="500px" width="550px">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="UK_085.jpg" alt="Third slide" height="500px" width="550px">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+<div class="card-deck">
+  <div class="card text-white bg-dark mb-3">
+    <img class="card-img-top" src="William.jpg" alt="Card image cap" height="400px" width="400px" id="img0">
+    <div class="card-body">
+      <span style="display: none" id="id0">""</span>
+      <h4 class="card-title" id="title0">William Shakespere</h4>
+      <p class="card-text" id="con0">There has been many poets and many poetries,many writers and many stories.Each of them is unique and beautiful in its own way.</p>
+    <a href="link1.html"><button class="btn btn-warning" onclick="blog(document.getElementById('id0').innerHTML)" >Read more</button></a>
+      
+    </div>
+  </div>
+  
+  <div class="card text-white bg-dark mb-3">
+    <img class="card-img-top" src="ruskin.jpg" alt="Card image cap" height="400px" width="400px" id="img1">
+    <div class="card-body">
+      <span style="display: none" id="id1">""</span>
+      <h4 class="card-title" id="title1" >Ruskin Bond</h4>
+      <p class="card-text" id="con1">Who thinks before wriing.Its an art that flows out of anywhere anytime in the form of beautiful description or an ode.</p>
+      <a href="link1.html"><button class="btn btn-warning" onclick="blog(document.getElementById('id1').innerHTML)" >Read more</button></a>
+    </div>
+  </div>
+  <div class="card text-white bg-dark mb-3">
+    <img class="card-img-top" src="William_wordsworth.jpg" alt="Card image cap" height="400px" width="400px" id="img2">
+    <div class="card-body">
+      <span style="display: none" id="id2">""</span>
+      <h4 class="card-title" id="title2">William wordsworth</h4>
+      <p class="card-text" id="con2">He sat down writing.He ended up sketching.The beauty lies in realizing your self worth and appreciating it.</p>
+      <a href="link1.html" ><button class="btn btn-warning" onclick="blog(document.getElementById('id2').innerHTML)">Read more</button></a>
+    </div>
+  </div>
+</div>
+
+
+
+<footer class="page-footer center-on-small-only blue-grey lighten-5 pt-0">
+
+    <div style="background-color:grey;">
+        <div class="container">
+            <!--Grid row-->
+            <div class="row py-4 d-flex align-items-center">
+
+                <!--Grid column-->
+                <div class="col-12 col-md-5 text-left mb-4 mb-md-0">
+                    <h6 class="mb-0 white-text text-center text-md-left"><strong>Get connected with stories that inspire and poems that reveal life !</strong></h6>
+                </div>
+                
+            </div>
+            <!--Grid row-->
+        </div>
+    </div>
+
+    <!--Footer Links-->
+    <div class="container mt-5 mb-4 text-center text-md-left">
+        <div class="row mt-3">
+
+            <!--First column-->
+            <div class="col-md-3 col-lg-4 col-xl-3 mb-r dark-grey-text">
+                <h6 class="title font-bold"><strong>AuthorPlaces</strong></h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>It is just a way to capture the attention of our readers. </p>
+            </div>
+            <!--/.First column-->
+
+            <!--Second column-->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-r dark-grey-text">
+                <h6 class="title font-bold"><strong>Products</strong></h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p><a href="#!" class="dark-grey-text">MDBootstrap</a></p>
+                <p><a href="#!" class="dark-grey-text">MDWordPress</a></p>
+                <p><a href="#!" class="dark-grey-text">BrandFlow</a></p>
+                <p><a href="#!" class="dark-grey-text">Bootstrap Angular</a></p>
+            </div>
+            <!--/.Second column-->
+
+            <!--Third column-->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-r dark-grey-text">
+                <h6 class="title font-bold"><strong>Useful links</strong></h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p><a href="#!" class="dark-grey-text">Your Account</a></p>
+                <p><a href="#!" class="dark-grey-text">Become an Affiliate</a></p>
+                <p><a href="#!" class="dark-grey-text">Meet poets</a></p>
+                <p><a href="#!" class="dark-grey-text">Help</a></p>
+            </div>
+            <!--/.Third column-->
+
+            <!--Fourth column-->
+            <div class="col-md-4 col-lg-3 col-xl-3 dark-grey-text">
+                <h6 class="title font-bold"><strong>Contact</strong></h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p><i class="fa fa-home mr-3"></i> New York, NY 10012, US</p>
+                <p><i class="fa fa-envelope mr-3"></i> info@authorsplaces.com</p>
+                <p><i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
+                <p><i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
+            </div>
+            <!--/.Fourth column-->
+
+        </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <!-- Copyright-->
+    <div class="footer-copyright">
+        <div class="container-fluid">
+            © 2017 Copyright: <a href="https://www.MDBootstrap.com"><strong> MDBootstrap.com</strong></a>
+            <br>
+            <center>Designed by <b>Pallavi Jain</b></center>
+        </div>
+    </div>
+    <!--/.Copyright -->
+    
+</footer>
+<!--/.Footer-->
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
